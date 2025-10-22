@@ -4,7 +4,7 @@ from numpy.polynomial.polynomial import Polynomial
 class DataProvider:
     def __init__(self):
         self.file_path = "dataset.xlsx"
-        self.cols = ["Timestamp", "SoC(%)", "Battery Current(A)", "Battery Voltage(V)"]
+        self.cols = ["Timestamp", "SoC(%)", "Battery Current(A)", "Battery Voltage(V)", "BMS Temperature(℃)"]
         self.searching_current = 10
         self.spread = 3
         self.min_current = self.searching_current - self.spread
@@ -36,6 +36,7 @@ class DataProvider:
         return df.groupby("SoC").agg({
             "Battery Voltage(V)": "median",
             "Battery Current(A)": "median",
+            "BMS Temperature(℃)": "median",
             'time_diff_sec': "mean"
         }).reset_index()
     
