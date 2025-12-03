@@ -4,7 +4,7 @@ from data import DataProvider
 import numpy as np
 import typing as T
 
-def predict_and_plot(result_key: str, results: T.Dict[str, T.Any], data_provider: DataProvider, features: T.List[str] = ["SoC", "BMS Temperature(℃)", "Battery Current(A)"]):
+def predict_and_plot(result_key: str, results: T.Dict[str, T.Any], data_provider: DataProvider, isCharging = True, features: T.List[str] = ["SoC", "BMS Temperature(℃)", "Battery Current(A)"]):
         """
         Uses the trained model to make predictions and plots the results.
         Also calculates metrics against the smoothed baseline.
@@ -74,4 +74,6 @@ def predict_and_plot(result_key: str, results: T.Dict[str, T.Any], data_provider
         plt.ylabel('Battery Voltage (V)')
         plt.legend()
         plt.grid(True)
+        if isCharging == False:
+             plt.gca().invert_xaxis()
         plt.show()

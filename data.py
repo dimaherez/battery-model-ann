@@ -62,9 +62,7 @@ class DataProvider:
 
     def get_discharging_data(self, df, current_min, current_max): # positive currents
         filtered = df[(df["Battery Current(A)"] >= current_min) & (df["Battery Current(A)"] <= current_max)]
-        grouped_df = self.get_grouped_df_by_soc(filtered)
-    
-        return self.smooth_voltages(grouped_df)
+        return filtered
 
     def get_charging_data(self, df, current_min, current_max): # negative currents
         filtered = df[(df["Battery Current(A)"] >= current_max) & (df["Battery Current(A)"] <= current_min)]
